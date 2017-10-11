@@ -2,6 +2,9 @@ int x = 50;
 int y = 50;
 int x2 = 5;
 int y2 = 5;
+int paddleWidth = 50;
+int paddleHeight = 200;
+int paddleY = mouseY;
 float speed = 2;
 int ballWidth = 50;
 boolean hitborder = false;
@@ -18,21 +21,30 @@ void draw() {
   fill(0, 0, 0);
   stroke(0, 0, 0);
   ellipse(x, y, ballWidth, ballWidth);
-  System.out.println(speed);
+  
  if (x - (ballWidth / 2) < 0) {
  speed = -speed; 
  }
  else if (x + (ballWidth / 2) > width) {
    speed = -speed;
  }
-rect (x2, mouseY, 50, 200);
-boolean intersects(int x, int y, int x2, int y2, int paddleLength) {
-if (y > y2 && x > x2 && x < paddleX + paddleLength)
-return true;
-else 
-return false;
-}
+ if (intersects()) {
+  System.out.println("Hi"); 
+ }
+rect (x2, mouseY, paddleWidth, paddleHeight);
+System.out.println(mouseY);
+System.out.println(y);
 
   
   
 }
+boolean intersects() {
+if (x2 + paddleWidth > x - ballWidth / 2 && paddleY > ballWidth / 2 && paddleY + paddleHeight < ballWidth / 2 ) {
+  return true;
+}
+  else {
+   return false; 
+  }
+
+}
+  
